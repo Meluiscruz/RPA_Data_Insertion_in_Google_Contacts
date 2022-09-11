@@ -81,39 +81,46 @@
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="786.666666666667,3654" sap2010:WorkflowViewState.IdRef="Sequence_6">
+  <Sequence sap2010:Annotation.AnnotationText="This is the main sequence for this routine." DisplayName="Contact Insertion Routine" sap:VirtualizedContainerService.HintSize="786.666666666667,4293.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_6">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="https://contacts.google.com/?hl=es&amp;tab=kC" Name="strURL_Contacts" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="SingleWindow" CloseMode="Always" DisplayName="Use Browser Chrome: Contactos de Google" sap:VirtualizedContainerService.HintSize="744.666666666667,3562" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Always" ScopeGuid="0c0c89e0-38ce-48b4-97af-917b4af042f9" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard WebDriverMode="{x:Null}" sap2010:Annotation.AnnotationText="Note: To avoid adding log-in routines, you should log in to your Google session before running this task." AttachMode="SingleWindow" CloseMode="Always" DisplayName="Use Browser Chrome: Contactos de Google" sap:VirtualizedContainerService.HintSize="744.666666666667,4170.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Always" ScopeGuid="0c0c89e0-38ce-48b4-97af-917b4af042f9" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="710.666666666667,3344" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence sap2010:Annotation.AnnotationText="1. Read the input argument (in_dtDirectory)&#xD;&#xA;2. Go to Google Contacts.&#xD;&#xA;3. Fill in  each filed in contact form with the current row data.&#xD;&#xA;4. Repeat until all transactions were inserted." DisplayName="Internet Browser Routine" sap:VirtualizedContainerService.HintSize="710.666666666667,3922" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dtDirectory]" DisplayName="For Each Row in in_dtDirectory" sap:VirtualizedContainerService.HintSize="668.666666666667,3249.33333333333" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="For each contact in in_dtDirectory, each row (contact) has a name, email address, phone number and location." DataTable="[in_dtDirectory]" DisplayName="For Each Row in in_dtDirectory" sap:VirtualizedContainerService.HintSize="668.666666666667,3748.66666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Contact" />
                   </ActivityAction.Argument>
-                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="634.666666666667,3131.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <TryCatch sap2010:Annotation.AnnotationText="This sequence prevents any error during the insertion in Google Contacts." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="634.666666666667,3600" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                     <TryCatch.Try>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="596,2893.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <Sequence sap2010:Annotation.AnnotationText="1. Define each field value from the current Contact&#xD;&#xA;3. Set up a New Contact form&#xD;&#xA;4. Insert Name&#xD;&#xA;5. Insert Surname&#xD;&#xA;6. Insert Company based on Contact's location.&#xD;&#xA;7. Insert Email&#xD;&#xA;8. Insert Phone Number&#xD;&#xA;9. Save changes.&#xD;&#xA;10. Continue with the next contact..." DisplayName="Insertion Routine" sap:VirtualizedContainerService.HintSize="596,3331.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strSurenames" />
                           <Variable x:TypeArguments="x:String" Name="strNames" />
@@ -126,9 +133,10 @@
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="554,222" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                        <ui:MultipleAssign sap2010:Annotation.AnnotationText="Define the value for each filed in Google Contacts form, from the current transaction." DisplayName="Fields values" sap:VirtualizedContainerService.HintSize="554,267.333333333333" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                           <ui:MultipleAssign.AssignOperations>
                             <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -173,6 +181,11 @@
                               </ui:AssignOperation>
                             </scg:List>
                           </ui:MultipleAssign.AssignOperations>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
                         </ui:MultipleAssign>
                         <uix:NClick ClickType="Single" DisplayName="Click 'Crear contacto'" sap:VirtualizedContainerService.HintSize="554,158" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Version="V1">
                           <uix:NClick.Target>
@@ -196,7 +209,7 @@
                             </uix:TargetAnchorable>
                           </uix:NClick.Target>
                         </uix:NClick>
-                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strNames]" Version="V1">
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Insert &quot;Nombres&quot;" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strNames]" Version="V1">
                           <uix:NTypeInto.Target>
                             <uix:TargetAnchorable BrowserURL="https://contacts.google.com/u/0/new" DesignTimeRectangle="668, 653, 808, 40" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl parentid='c2' tag='INPUT' type='text' aria-label='Nombre' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='c2' tag='INPUT' type='text' aria-label='Nombre' class='whsOnd zHQkBf' aaname='' /&gt;" Guid="3af225a6-47a0-4d86-bced-873e81acb6e5" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAywAAAAsCAYAAACHZjwAAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAUYSURBVHhe7dx5c5XVHcBxXocvp+9Ap9WOXaYWrdaZrs5UZ6yOjC3FpSha7Gh1XMKioh2q1lZEXForhZBNIAkEQhJIQhIvWeCGkOXnc06WIUTAPyg5HT+fmTOTe3Lv85z73/3OueeuiQUzs3PxbuNg3PF0SxzoGs1zHScn4id/aolNbx+P0bMX8tyGHUfi/lfao2+4nh/Xp2Zj3fbOWP/6kRgaPZ/nkrm5ufisoxa3P9UcO/59Ks+dnZyJzX8/Hndtbo0vxqfyXFI9NRr29MZ3NuyPXU1DC7Pz2k6Mx53VGtJ8tcTs/ZbhuLO6RtOxsfmJBZ3Ven/1l4Px3D978uP61Ew0fNib13Dk1Nk8t+jjgyNxyyON8fa+wYWZeaNnp+Nnz7bF8+/15NcDAACr54rBMll9YN/+8ck8t6d1OM9dGix9I/UcIFs+OhnnL8zmuUWDtfNx74uHYv1rnTE9M7cULD99pi3OLATQolc/ORk3VwGxt4qci7WdGIu1VXDs3DuQr5GkYLn7mdb8v4uNVBH0u+pev21oj6np2aVguWtzW5w4fW7hWZGv8+Lu3vjuo43x1n8HovHo6NLY21mLXz9/MDa8cTRqE8vXCAAAXF9XDJbkxOl6PLi1I+554WAMnjm/IljSLsyPNzXH6/86FReqSLhY+sCfdl/WbeuoAuJ/Hyzj9enYuLMrHtjSnuPpcsEyeWEmnvzbsfj2H/bH9//YFD/cuHKk6wgWAABYXVcNlumZ2figdThue7K5io3ueKiKj6/aYWn4sG/FDstAbTJ+c513WB5+9eo7LCmsXtjVE997/EDsrt7bod6JFaNnqL50PwAAYHVcNViSFBqP/7Ur70ikcXGwTExO58eXP8PSEls/6stz1zJY0hmWS9d5uTMslwZLks7EpDMs7zcvPzMDAACU42sFS3J84FzeZbnx9/uWBUs6MJ8+9K/d1BwNe/ri1MhkDpdDvePx0LbO+MVzn0d/bTI/91oGy03r98W67R1xuGc836/7dD2e2Hksr6Pl+PzOy5WCZXhsKu576VB+v/9pr8VQ9Thdp6v/XDz6Zlfsqt6THRYAAFhdXztY0o7Je01DcetjB5YFSzJRn4k3Pu2PX1Zxks6zrH2qJW5/ujke3Noe+4+eyVGTXMtgSfdJX//6+bOfV/dqiR9sPBB3/7ktdn42kEMluVKwJN3V3PodR/J7/tETTXk3KP2dwudo//JfFQMAAK6/pWBJUZF2KXZXMZAO13+V9BPG6f+fHq5VkTK9MDsvnV9p75uIfzSezr+8lX42uP+LyZitQmhROjvS2j0WH7SOrDjvkr7O9c7+wRioLb932glJX9/qGji3FD7pfMkn1fXTc5uPjebXvVvdt617PK9xUYqww73jec1jl6x3UQqnvZ1n8jXe2TeYv8aWDu8DAACrbylYAAAASrMULGvWaBcAAKAsggUAACiWYAEAAIolWAAAgGIJFgAAoFiCBQAAKJZgAQAAiiVYAACAYgkWAACgWIIFAAAolmABAACKJVgAAIBiCRYAAKBYggUAACiWYAEAAIolWAAAgGIJFgAAoFiCBQAAKJZgAQAAiiVYAACAYgkWAACgWIIFAAAolmABAACKJVgAAIBiCRYAAKBYggUAACiWYAEAAIolWAAAgGKpFAAAoFiCBQAAKJZgAQAAiiVYAACAYgkWAACgWIIFAAAolmD5BvrWYyNxwz2DhmEYhmEY/3fjjpdHFz7R8M0Q8SUEy5YK1/xI6wAAAABJRU5ErkJggg==" InformativeScreenshot="1e308f19539b4639153ac8184c738b76.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Contactos de Google' /&gt;" SearchSteps="Selector, FuzzySelector" Visibility="Interactive">
                               <uix:TargetAnchorable.Anchors>
@@ -207,7 +220,7 @@
                             </uix:TargetAnchorable>
                           </uix:NTypeInto.Target>
                         </uix:NTypeInto>
-                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="Simulate" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strSurenames]" Version="V1">
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Insert &quot;Apellidos&quot;" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="Simulate" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strSurenames]" Version="V1">
                           <uix:NTypeInto.Target>
                             <uix:TargetAnchorable BrowserURL="https://contacts.google.com/u/0/new" DesignTimeRectangle="668, 732, 808, 40" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' parentid='c2' tag='INPUT' type='text' aria-label='Apellidos' /&gt;" FuzzySelectorArgument="&lt;webctrl class='whsOnd zHQkBf' parentid='c2' tag='INPUT' type='text' aria-label='Apellidos' aaname='' /&gt;" Guid="cf075c1a-8542-465a-9d5c-d64f9c57e6fd" ImageBase64="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" InformativeScreenshot="dacf3701986fc637bf8b85a7314786f0.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Contactos de Google' /&gt;" SearchSteps="Selector, FuzzySelector" Visibility="Interactive">
                               <uix:TargetAnchorable.Anchors>
@@ -218,9 +231,14 @@
                             </uix:TargetAnchorable>
                           </uix:NTypeInto.Target>
                         </uix:NTypeInto>
-                        <If Condition="[strLocation.Trim &lt;&gt; &quot;CDMX&quot;]" sap:VirtualizedContainerService.HintSize="554,256" sap2010:WorkflowViewState.IdRef="If_1">
+                        <If sap2010:Annotation.AnnotationText="If [Ubicación] from Contact is not CDMX" Condition="[strLocation.Trim &lt;&gt; &quot;CDMX&quot;]" DisplayName="Check Location's value" sap:VirtualizedContainerService.HintSize="554,286.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_1">
+                            <Assign DisplayName="Concatenate and Capitalize Work place." sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_1">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:String">[strLocation]</OutArgument>
                               </Assign.To>
@@ -230,7 +248,7 @@
                             </Assign>
                           </If.Then>
                         </If>
-                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="Simulate" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strWorkPlace + &quot; &quot;+ strLocation]" Version="V1">
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Insert &quot;Empresa&quot;" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="Simulate" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strWorkPlace + &quot; &quot;+ strLocation]" Version="V1">
                           <uix:NTypeInto.Target>
                             <uix:TargetAnchorable BrowserURL="https://contacts.google.com/u/0/new" DesignTimeRectangle="668, 820, 808, 40" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl parentid='c5' tag='INPUT' type='text' aria-label='Empresa' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='c5' tag='INPUT' type='text' aria-label='Empresa' class='whsOnd zHQkBf' aaname='' /&gt;" Guid="9f6778c1-319a-40a1-8e38-d87c9ebed397" ImageBase64="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" InformativeScreenshot="95d75bbbc89142931911723154876eaf.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Contactos de Google' /&gt;" SearchSteps="Selector, FuzzySelector" Visibility="Interactive">
                               <uix:TargetAnchorable.Anchors>
@@ -241,7 +259,7 @@
                             </uix:TargetAnchorable>
                           </uix:NTypeInto.Target>
                         </uix:NTypeInto>
-                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strEmail]" Version="V1">
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Insert &quot;Correo Electrónico&quot;" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strEmail]" Version="V1">
                           <uix:NTypeInto.Target>
                             <uix:TargetAnchorable BrowserURL="https://contacts.google.com/u/0/new" DesignTimeRectangle="668, 710, 808, 40" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl parentid='c6' tag='INPUT' type='text' aria-label='Correo electrónico' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='c6' tag='INPUT' type='text' aria-label='Correo electrónico' class='whsOnd zHQkBf' aaname='' /&gt;" Guid="36f6ba4f-eb16-4c0c-8974-045c31e65232" ImageBase64="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" InformativeScreenshot="b3da8a09e479c0b6be00b9619b5aa292.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Contactos de Google' /&gt;" SearchSteps="Selector, FuzzySelector" Visibility="Interactive">
                               <uix:TargetAnchorable.Anchors>
@@ -252,7 +270,7 @@
                             </uix:TargetAnchorable>
                           </uix:NTypeInto.Target>
                         </uix:NTypeInto>
-                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,220" sap2010:WorkflowViewState.IdRef="NTypeInto_6" InteractionMode="Simulate" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strPhoneNumber]" Version="V1">
+                        <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="Note: Make sure that MX code is selected to bypass country selection routines.&#xD;&#xA;" ClickBeforeMode="None" DisplayName="Insert &quot;Telefono&quot;" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="554,282" sap2010:WorkflowViewState.IdRef="NTypeInto_6" InteractionMode="Simulate" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Text="[strPhoneNumber]" Version="V1">
                           <uix:NTypeInto.Target>
                             <uix:TargetAnchorable BrowserURL="https://contacts.google.com/u/0/new" DesignTimeRectangle="793, 608, 683, 40" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tag='INPUT' type='tel' aria-label='Teléfono' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='tel' aria-label='Teléfono' class='whsOnd zHQkBf' aaname='' /&gt;" Guid="25ebed45-9f9c-4955-ac1f-e3e8e93ac717" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAq8AAAAsCAYAAABL2lHCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAVeSURBVHhe7d1ni9VKHAfg+/0/hG9EELFiR7FhxS5W7CI27L3n8stmjtmQ0zx77zV7nwfC2U0mc2bz6sd/ZyZ/VQAAMBDCKwAAgyG8AgAwGMIrAACDIbwCADAYwisAAIMhvAIAMBjCKwAAgyG8AgAwGMIrAACD8Z+E11u3blVr1qypzp8/35xZ3MuXL6sjR45Ua9eurdatW1c9e/asuQIAwGoxCq8lUM56bN26tXr9+nVz93xmDa8/f/6s2yaQHj9+vPr69WtzZbkE14wnfW7fvr3au3dv9fz58+YqAACrxSi83r9/vw597WPnzp2jSubu3buXXTt48GD19u3b5u75zBpeb9++PTW4JuCeOXOm7u/mzZv17wAArE4Tpw2kspqKZsLq58+fm7OLmyW8vn//vjp69Gh14sSJscE1vnz5Uu3bt6/asWNH9e7du+YsAACr0R8bXmeVcZVq8EqOEQCAP4/wCgDAYKxYeP306VN18eLFatOmTXUw3bZtW3X58uX63/pdk8Jr5qw+evSo2r9//2i+7aFDh6qnT582LZaU0Jp+uke33+/fv1cPHz4c9Zkj9969e7e+1lXGl89MXzh16lS1YcOG+lzm/j548GDs3Nq0v3Dhwug55DP3m9IAALC4FQmvCZZpl1CYRV5pn/Ca8JbA+PHjx6blknHh9du3b6PFVwl96SdhMQE2fWcBV5F5sNeuXavOnTtXbd68uT7y86VLl+pwWaTPkydP1n0mgO7Zs6c+Shg9fPhwHbzbyvgy9uxeUMaSn3M+Y7lz507T+pfHjx+PQmvZ9aDck++7d+9e0xIAgN+xcHj98OFDHTATzlIxLVLRTCU2wS2hsl2pHBdeb9y4UZ/v7i6QrbASAhNQX7161ZxdUiqw48Z45cqVus8s/mqH1PSfxWC5lkrpjx8/miu/xpeQmjG1q7NlB4SE3vYYU1nNorE8h25ltoTaPMvu+AEAmN3C4bUEzkwR6EpYzL27du2qQ27RF15zPRXRhNS+LbjKPdevX2/OLJkUXqf1WYJ3/sb8rUX5rtOnTy8LtZG/KX12dzeY9ByiXE9QBgDg9ywUXlORTJV0/fr1vS8FSPDLfM/u9b7wmjdipaKZ9t3AGLk//XSvTwqvqXjme8b1GQmTaZN9bou+8RXl+9qBN1MTUtkd9xyiPMsDBw70zgMGAGC6hcJr2WM1QW/a0V5w1RcOM4e0e0/fcezYsWX/xp8UXieF0KK0yWcxb3jtO9c1aZwAAMxmofBaAlkqpmWh1rhjWuW1nCuLo8YdZ8+eFV4BAP6nFp42kEroxo0b60VVs+oLh6nM5lx2G5jnFa+TQuEs0waymCxt/o1pA1u2bDFtAABgAQsv2MoCpQS9LEjq0xdE+8JhWa2fBVTtxV1tfX1NCq+lz2kLtrq7GMwbXqM8h2kLtro7LwAAMLuFw+ubN2/qcNi3RVQqjKmkZtV+u9rYFw5zX/Zozfnutla59uTJk3qVf6qpbZPCa0zaKqvsKZvPdmX2d8LrpK2yyj64CcnzVKgBAFhu4fAa7c3583KCtC8vAsh82KtXr84UDtsvFMiLCVIVTV8JxzmXnxOW26aF176XFKRtGe+klxTME16j/Rwy5rTLXOA8g3y3lxQAACxmRcJrdF+LmrCWaueLFy+aFr9MCoeZR9t+lWvaZZ/YvE0rQbRrWniNbp850n7a62HnDa/h9bAAAP+cieEVAAD+JMIrAACDIbwCADAYwisAAIMhvAIAMBjCKwAAgyG8AgAwGMIrAACDIbwCADAYwisAAIMhvAIAMBjCKwAAgyG8AgAwGMIrAACDIbwCADAYwisAAANRVX8DgkDXmMaIQuUAAAAASUVORK5CYII=" InformativeScreenshot="256e002c17ab5f6f96440c2a7f239678.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Contactos de Google' /&gt;" SearchSteps="Selector, FuzzySelector" Visibility="Interactive">
                               <uix:TargetAnchorable.Anchors>
@@ -262,8 +280,13 @@
                               </uix:TargetAnchorable.Anchors>
                             </uix:TargetAnchorable>
                           </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
                         </uix:NTypeInto>
-                        <ui:Click AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="500" DelayMS="500" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="554,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="500" DelayMS="500" DisplayName="Click &quot;Guardar&quot; to save changes." sap:VirtualizedContainerService.HintSize="554,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
                           <ui:Click.CursorPosition>
                             <ui:CursorPosition Position="Center">
                               <ui:CursorPosition.OffsetX>
@@ -285,16 +308,28 @@
                             </ui:Target>
                           </ui:Click.Target>
                         </ui:Click>
-                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="554,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
-                        <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'No has'" sap:VirtualizedContainerService.HintSize="554,336.666666666667" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Version="V1">
+                        <Delay sap2010:Annotation.AnnotationText="Delay before work with the following Contact&#xD;&#xA;" DisplayName="Delay" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="554,84" sap2010:WorkflowViewState.IdRef="Delay_1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <uix:NCheckState Exists="{x:Null}" sap2010:Annotation.AnnotationText="this routine verify if changes were saved before working with the nex transaction." DisplayName="Check App State: unsaved Changes" sap:VirtualizedContainerService.HintSize="554,412.666666666667" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="0c0c89e0-38ce-48b4-97af-917b4af042f9" Version="V1">
                           <uix:NCheckState.IfExists>
-                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="250,116.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="250,162" sap2010:WorkflowViewState.IdRef="Sequence_10">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Throw Exception="[New SystemException]" sap:VirtualizedContainerService.HintSize="208,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                              <Throw sap2010:Annotation.AnnotationText="General Exception for unsaved changes." DisplayName="Throw a Generic Exception" Exception="[New SystemException]" sap:VirtualizedContainerService.HintSize="208,67.3333333333333" sap2010:WorkflowViewState.IdRef="Throw_1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Throw>
                             </Sequence>
                           </uix:NCheckState.IfExists>
                           <uix:NCheckState.IfNotExists>
@@ -315,11 +350,16 @@
                               </uix:TargetAnchorable.Anchors>
                             </uix:TargetAnchorable>
                           </uix:NCheckState.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
                         </uix:NCheckState>
                       </Sequence>
                     </TryCatch.Try>
                     <TryCatch.Catches>
-                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="600.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -330,10 +370,11 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
                           </ActivityAction.Argument>
-                          <Sequence sap:VirtualizedContainerService.HintSize="376,312.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence sap2010:Annotation.AnnotationText="Perform in case there was any error during the Contact info insertion." DisplayName="Generic Exception Protocol" sap:VirtualizedContainerService.HintSize="376,355.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[Exception.Message + &quot; &quot; + Exception.Source]" />
@@ -348,6 +389,7 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEachRow>
@@ -357,6 +399,11 @@
       <uix:NApplicationCard.TargetApp>
         <uix:TargetApp Area="1912, -8, 1696, 1026" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAXESURBVHhe7VtdbBRVFK4I0QdDCEnZufviE5EHH9RYI/qgLyYmvmE0gomuqSkIbHc7Wx8MkRT0wVBMfNBoitGYmNA3lAeLEbBoq/W3DW0ITVtKW+vM9Mf+EAqlptdzhgOtnTPdmb13dme1X/Kl2917z/m+O/feuXNnpmINaygNRG7qXiNnVSHxM33930MyO/6QyNlviZx1LmnaffB5NpmzJUf3N7eMdU6Y1uGkOfYghSkjNMh1W0znsaRpNYKp/pUmCyDEsI5sqXe2Y2zKEkfIO4x663kw3suY0EOILUznWcxFSeMBo278CRD3Oys6AsLw+AV7GaUvHSpfH3sAxu23nMgi8WSi3r6f5BQXwrQPABcZUUUlagC+QbKKgBq5AY7655yYUhI1oTZSGQ021s1shtNUOycgFgRtqJHk6kUyM34fdLVBNnGM6GoErSRbExrkemjdNi5hHAkLqe9RM6lXB7TqR1yiOBM1k3w1iJyzh0tQDkTtZKMw4GIDWvIGF7wc6GrPOo+TnZBIy7vg1HKJC1xWhIsrmA/uJlfBAa2XZQNq4MEvZmV7/7ycnlt0iZ/fhO+4sjqIXshWQODRN22bC6bCp96dkN2jC9IP+BuW4eqqELz8GaoXRHH0tx1w5PDk32TVH1gGy3IxVBi4F2xOT26M4ugf++4qWcwPLMvFUGHgXpCss1/gAqgyLLgYygRvZNMfMGs2s5UViOM6LKKYC9Ab2fQBXumZ9gxbWYE7PviLbAUH1uFiKXKanPIw6q0nmUrKrDr0B9kKjqpDo2wsVSZM+1Gy64VhOu9wlVRp7OuTM3C+D4qZa4vS2N/PxlIleiS7XgjTauUqqdLIDMvMxwNkLz9S7w9IkR1hY6kSPZJdL+Ay8jJXSQeNl9plS+csWfRHS9cVaaR+YmPooXWR7HqRNK3rfCV1GvsHZGLXadl4YpisetF40oIyZ6RID7IxNJGfCDdlpzYxhbVS7LkgEztPy6raNlnb1CubvrZcZpr65MPpNtd8VGN/OdEr2V4CbnFzhXUTe4KR6pAG9IZbTOw6634n0pfYOvo5sY1sL0HUjT3NF46GAiZGgY1RexmXqWyZqIine7K9hGI3QCmJXsn2EooxBHB5m/pkSh49dcVlS/d1l7f+x98iWQKvIHol20uALw2usCpf+XRKNv885258BAWWxTqZ49NsTFWiV7K9DA1yPYxFbft/2eMzga7/8wFjYO/gchRCkbMXKp6Td5Lrf0PHPgBuZuAWl25gQ+gYHrjYI7tewOViF1cpKFFgmK4eFhgbexaXOyihB3SQXS+gByjdAOlZZb9PF7ARHnl7nM0fhOiR7HqhcirEI1MsnIIzB6chCNlT4G3UyA1QaHplpSAMs+enCpwPOA35CN1/Nu8t9EK3xH7ov0HyigNOQ17m3RIDFLopWhYNEGRTFLfF4Zp5ng2wCpta81/r68JIQUPAmq/cO3YP2VwdMFOGvjGS+WyU5EWPlq7wt9HQE9kLgAJujIqa87KlM/ozAe4tbn2tg9XgRzA/iJ7IXTAYppXigvlR1A7JxItn5dETw7Jn5BrJ1YeRyQXZ3D4ht1a3SmN3D6vBl0HGvgcNch3MmufZgD409vW6jbB8s0M7q39jc/sRenI3OQoPfFhZmNZVLrAfRWZIGq923tz1eflHLUyk4G/1r9LY28vm9KVpzbGXvmEAgXZ6ApcJ8dllsqEG6EbvcQnizFVvgIQG7hXg8/5MojgStH6l/YlyI21VwnwwxCWMF62LuJgj2XrhPiqbs7/xJo0Nz0T2qOxtwOkRutiHTPKSEuapY6iNVEYPYTq7C7lm0E/QUGdXk6ziAl9WgMXSl7yworB0L0wsx82XpIr4MDXkisUrMyshcs4OnIVZ0ToIS3NY3DxD6WIKfG2u3tkODXEEROt5bc60Gt0jHu/X5njQ9cRhdyEV9MVJ02o1cs7BWIzvqPC/eXV2DbFGRcU/xrznY+wSsRgAAAAASUVORK5CYII=" InformativeScreenshot="dd096ad445736874eeba38ef6bb2a71d.png" Selector="&lt;html app='chrome.exe' title='Contactos de Google' /&gt;" Url="[strURL_Contacts]" />
       </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </uix:NApplicationCard>
   </Sequence>
 </Activity>
