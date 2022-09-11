@@ -1,4 +1,4 @@
-# RPA_Data_Insertion_in_Google_Contacts
+# RPA project: Data Insertion from an Excel file to Google Contacts.
 
 This RPA project follows the next sequence:  
 
